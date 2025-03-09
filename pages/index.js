@@ -1,7 +1,7 @@
+import { v4 as uuidv4 } from "https://cdn.skypack.dev/uuid"; //imports random # id
 import { initialTodos, validationConfig } from "../utils/constants.js";
 import Todo from "../components/Todo.js";
-
-console.log(initialTodos, validationConfig);
+import FormValidator from "../components/FormValidator.js";
 
 const addTodoButton = document.querySelector(".button_action_add");
 const addTodoPopup = document.querySelector("#add-todo-popup");
@@ -23,11 +23,7 @@ const generateTodo = (data) => {
   const todoElement = todo.getView();
   return todoElement;
 
-  //--TO BE REMOVED:
-  // // Apply id and for attributes.
-  // // The id will initially be undefined for new todos.
-  // todoCheckboxEl.id = `todo-${data.id}`;
-  // todoLabel.setAttribute("for", `todo-${data.id}`);
+  //--REMOVED:
 
   // // If a due date has been set, parsing this it with `new Date` will return a
   // // number. If so, we display a string version of the due date in the todo.
@@ -40,8 +36,6 @@ const generateTodo = (data) => {
   //   })}`;
   // }
 
-  // todoDeleteBtn.addEventListener("click", () => {
-  //   todoElement.remove();
   // });
 };
 
@@ -62,7 +56,8 @@ addTodoForm.addEventListener("submit", (evt) => {
   const date = new Date(dateInput);
   date.setMinutes(date.getMinutes() + date.getTimezoneOffset());
 
-  const values = { name, date };
+  const id = uuidv4();
+  const values = { name, date, id };
   const todo = generateTodo(values);
   todosList.append(todo);
   closeModal(addTodoPopup);
@@ -72,3 +67,5 @@ initialTodos.forEach((item) => {
   const todo = generateTodo(item);
   todosList.append(todo);
 });
+
+const formValidator = new FormValidator(validationConfig, addTodoForm);

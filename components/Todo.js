@@ -4,21 +4,59 @@ class Todo {
     this._data = data;
     this._templateElement = document.querySelector(selector);
   }
+
+  //--TO BE REMOVED:
+
+  // // If a due date has been set, parsing this it with `new Date` will return a
+  // // number. If so, we display a string version of the due date in the todo.
+  _formatDueDate(date) {
+    const dueDate = new Date(date);
+    if (!isNaN(dueDate)) {
+      return `Due: ${dueDate.toLocaleString("en-US", {
+        year: "numeric",
+        month: "short",
+        day: "numeric",
+      })}`;
+    }
+    return "";
+  }
+
+  _generateCheckboxEl() {
+    this._todoCheckboxEl = this._todoElement.querySelector(".todo__completed");
+    this._todoLabel = this._todoElement.querySelector(".todo__label");
+    this._todoCheckboxEl.checked = this._data.completed;
+    this._todoCheckboxEl.id = `todo-${this._data.id}`;
+    this._todoLabel.setAttribute("for", `todo-${this._data.id}`);
+    this._todoDeleteBtn = this._todoElement.querySelector(".todo__delete-btn");
+  }
+
+  _setEventListeners() {
+    this._todoCheckboxEl.addEventListener("change", () => {
+      this._data.completed = !this._data.completed;
+      console.log(this._data.completed);
+    });
+
+    this._todoDeleteBtn.addEventListener("click", () => {
+      this._todoElement.remove();
+    });
+  }
+
   getView() {
     this._todoElement = this._templateElement.content
       .querySelector(".todo")
       .cloneNode(true);
+
     const todoNameEl = this._todoElement.querySelector(".todo__name");
-    const todoCheckboxEl = this._todoElement.querySelector(".todo__completed");
-    const todoLabel = this._todoElement.querySelector(".todo__label");
     const todoDate = this._todoElement.querySelector(".todo__date");
-    const todoDeleteBtn = this._todoElement.querySelector(".todo__delete-btn");
 
     todoNameEl.textContent = this._data.name;
-    todoCheckboxEl.checked = this._data.completed;
 
-    todoCheckboxEl.id = `todo-${this._data.id}`;
-    todoLabel.setAttribute("for", `todo-${this._data.id}`);
+    this._generateCheckboxEl();
+    this._setEventListeners();
+
+    if (this._data.date) {
+      todoDate.textContent = this._formatDueDate(this._data.date);
+    }
 
     return this._todoElement;
   }
