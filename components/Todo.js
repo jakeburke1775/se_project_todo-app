@@ -5,10 +5,6 @@ class Todo {
     this._templateElement = document.querySelector(selector);
   }
 
-  //--TO BE REMOVED:
-
-  // // If a due date has been set, parsing this it with `new Date` will return a
-  // // number. If so, we display a string version of the due date in the todo.
   _formatDueDate(date) {
     const dueDate = new Date(date);
     if (!isNaN(dueDate)) {

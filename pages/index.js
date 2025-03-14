@@ -23,20 +23,7 @@ const generateTodo = (data) => {
   const todoElement = todo.getView();
   return todoElement;
 
-  //--REMOVED:
-
-  // // If a due date has been set, parsing this it with `new Date` will return a
-  // // number. If so, we display a string version of the due date in the todo.
-  // const dueDate = new Date(data.date);
-  // if (!isNaN(dueDate)) {
-  //   todoDate.textContent = `Due: ${dueDate.toLocaleString("en-US", {
-  //     year: "numeric",
-  //     month: "short",
-  //     day: "numeric",
-  //   })}`;
-  // }
-
-  // });
+  //original code moved
 };
 
 addTodoButton.addEventListener("click", () => {
@@ -68,4 +55,6 @@ initialTodos.forEach((item) => {
   todosList.append(todo);
 });
 
-const formValidator = new FormValidator(validationConfig, addTodoForm);
+const newTodo = new FormValidator(validationConfig, addTodoForm);
+
+newTodo.enableValidation();
