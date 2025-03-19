@@ -41,10 +41,14 @@ class FormValidator {
     });
   };
 
+  _disableSubmitBtn() {
+    this._submitButton.classList.add(this._inactiveButtonClass);
+    this._submitButton.disabled = true;
+  }
+
   _toggleButtonState(inputList) {
     if (this._hasInvalidInput(inputList)) {
-      this._submitButton.classList.add(this._inactiveButtonClass);
-      this._submitButton.disabled = true;
+      this._disableSubmitBtn();
     } else {
       this._submitButton.classList.remove(this._inactiveButtonClass);
       this._submitButton.disabled = false;
@@ -59,6 +63,11 @@ class FormValidator {
         this._toggleButtonState(this._inputList);
       });
     });
+  }
+
+  resetValidation() {
+    this._formEl.reset();
+    this._disableSubmitBtn();
   }
 
   enableValidation() {
