@@ -9,7 +9,6 @@ class Popup {
     if (evt.key === "Escape") {
       evt.preventDefault(); ///STOP HERE
       close();
-      console.log("hello ");
     }
   }
 
@@ -19,18 +18,14 @@ class Popup {
   }
 
   close() {
-    console.log("close");
     this._popupElement.classList.remove("popup_visible"); //remove class from popup element
     //remove the escape listener
   }
 
   setEventListeners() {
-    this._popupCloseBtn.addEventListener("click", () => {
-      this.close();
-    });
     this._popupElement.addEventListener("mousedown", (evt) => {
       if (
-        !this._popupElement.contains(evt.target) ||
+        this._popupElement === evt.target ||
         evt.target === this._popupCloseBtn
       ) {
         this.close();
