@@ -22,7 +22,6 @@ class PopupWithForm extends Popup {
     this._popupForm.addEventListener("submit", (evt) => {
       evt.preventDefault();
       const inputValues = this._getInputValues();
-      // console.log(inputValues);
       this._handleFormSubmit(inputValues);
     });
   }
