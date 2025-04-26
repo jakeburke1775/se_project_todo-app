@@ -29,3 +29,7 @@ const validationConfig = {
 };
 
 export { initialTodos, validationConfig };
+
+// this._toggleCompletion();
+// this._handleCheck(this._completed);
+//this code goes
