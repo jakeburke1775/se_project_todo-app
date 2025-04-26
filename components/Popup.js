@@ -8,7 +8,7 @@ class Popup {
   _handleEscapeClose(evt) {
     if (evt.key === "Escape") {
       evt.preventDefault();
-      close();
+      this.close();
     }
   }
 
@@ -19,7 +19,7 @@ class Popup {
 
   close() {
     this._popupElement.classList.remove("popup_visible"); //remove class from popup element
-    document.removeEventListener(this._handleEscapeClose); //remove the escape listener
+    document.removeEventListener("keyup", this._handleEscapeClose); //remove the escape listener
   }
 
   setEventListeners() {
