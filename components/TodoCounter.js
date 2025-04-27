@@ -8,6 +8,7 @@ class TodoCounter {
     console.log(this._element);
     console.log(this._completed);
     console.log(this._total);
+    this._updateText(); //update the text
   }
 
   // Call this when a checkbox is clicked, and when a completed
