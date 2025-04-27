@@ -27,6 +27,7 @@ const addTodoPopup = new PopupWithForm({
     const id = uuidv4();
     const values = { name, date, id };
     renderTodo(values);
+    todoCounter.updateTotal(true);
     addTodoPopup.close();
     newTodoValidator.resetValidation();
   },
@@ -44,11 +45,20 @@ const section = new Section({
 
 function handleCheck(completed) {
   todoCounter.updateCompleted(completed);
+  // console.log("CHECKED");
+}
+
+function handleDelete(completed) {
+  if (completed) {
+    todoCounter.updateCompleted(false);
+  }
+  todoCounter.updateTotal(false);
+  // console.log("DELETED");
 }
 
 // The logic in this function should all be handled in the Todo class.
 const generateTodo = (data) => {
-  const todo = new Todo(data, "#todo-template", handleCheck);
+  const todo = new Todo(data, "#todo-template", handleCheck, handleDelete);
   const todoElement = todo.getView();
   return todoElement;
 };
