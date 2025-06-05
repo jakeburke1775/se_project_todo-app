@@ -1,19 +1,25 @@
 const initialTodos = [
   {
-    id: "7cec7373-681b-49d9-b065-021d61a69d03",
-    name: "kick rocks",
-    completed: true,
-    date: new Date(),
-  },
-  {
-    id: "a7bfd5ef-37cc-4fa6-89f2-cac098a8aeba",
-    name: "recycle tuna water",
-    completed: true,
+    id: "aa486839-63ab-437f-b8a2-29ab217dff4f",
+    name: "pet / eco friendly availible?   Mention probiotic cleaning",
+    completed: false,
     date: new Date(),
   },
   {
     id: "aa486839-63ab-437f-b8a2-29ab217dff4f",
-    name: "discuss best crayon flavor",
+    name: "Discuss where and the times they clean",
+    completed: false,
+    date: new Date(),
+  },
+  {
+    id: "a7bfd5ef-37cc-4fa6-89f2-cac098a8aeba",
+    name: "INTRO ITEM: Discuss pay per hour (3 hour example once a week)",
+    completed: false,
+    date: new Date(),
+  },
+  {
+    id: "7cec7373-681b-49d9-b065-021d61a69d03",
+    name: "INTRO ITEM: Discuss Cleaner availibility",
     completed: false,
     date: new Date(),
   },
